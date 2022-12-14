@@ -2,53 +2,18 @@ import CodeMirror from '@uiw/react-codemirror';
 import { StreamLanguage } from '@codemirror/language';
 import { yaml } from '@codemirror/legacy-modes/mode/yaml';
 
-const goLang = `--- # Favorite movies
-- Casablanca
-- North by Northwest
-- The Man Who Wasn't There
---- # Shopping list
-[milk, pumpkin pie, eggs, juice]
---- # Indented Blocks, common in YAML data files, use indentation and new lines to separate the key: value pairs
-  name: John Smith
-  age: 33
---- # Inline Blocks, common in YAML data streams, use commas to separate the key: value pairs between braces
-{name: John Smith, age: 33}
----
-receipt:     Oz-Ware Purchase Invoice
-date:        2007-08-06
-customer:
-    given:   Dorothy
-    family:  Gale
-
-items:
-    - part_no:   A4786
-      descrip:   Water Bucket (Filled)
-      price:     1.47
-      quantity:  4
-
-    - part_no:   E1628
-      descrip:   High Heeled "Ruby" Slippers
-      size:       8
-      price:     100.27
-      quantity:  1
-
-bill-to:  &id001
-    street: |
-            123 Tornado Alley
-            Suite 16
-    city:   East Centerville
-    state:  KS
-
-ship-to:  *id001
-
-specialDelivery:  >
-    Follow the Yellow Brick
-    Road to the Emerald City.
-    Pay no attention to the
-    man behind the curtain.
-...
-`;
 
 export default function App() {
-  return <CodeMirror value={goLang} height="400px" extensions={[StreamLanguage.define(yaml)]} />;
+  const queryString = window.location.search
+  // it will look like this: ?product=shirt&color=blue&newuser&size=m
+
+  // parse the query string's paramters
+  const urlParams = new URLSearchParams(queryString)
+
+  // To get a parameter simply write something like the follwing
+  const items = urlParams.get('items') || ""
+
+  console.log(items)
+
+  return <CodeMirror value={items} height="400px" editable={false} extensions={[StreamLanguage.define(yaml)]} />;
 }
