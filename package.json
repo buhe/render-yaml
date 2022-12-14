@@ -2,6 +2,7 @@
   "name": "render-yaml",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@codemirror/language": "^6.3.1",
     "@codemirror/legacy-modes": "^6.3.1",
