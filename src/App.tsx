@@ -1,4 +1,4 @@
-import CodeMirror from '@uiw/react-codemirror';
+import CodeMirror, { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { StreamLanguage } from '@codemirror/language';
 import { yaml } from '@codemirror/legacy-modes/mode/yaml';
 
@@ -12,8 +12,9 @@ export default function App() {
 
   // To get a parameter simply write something like the follwing
   const items = urlParams.get('items') || ""
+  const theme = urlParams.get('theme') || "light" as any
 
   console.log(items)
 
-  return <CodeMirror value={items} height="400px" editable={false} extensions={[StreamLanguage.define(yaml)]} />;
+  return <CodeMirror theme={theme} value={items} height="400px" editable={false} extensions={[StreamLanguage.define(yaml)]} />;
 }
